@@ -6,16 +6,15 @@
 /*   By: jcaron <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/06 18:37:39 by jcaron            #+#    #+#             */
-/*   Updated: 2023/01/06 18:44:09 by jcaron           ###   ########.fr       */
+/*   Updated: 2023/01/06 19:03:08 by jcaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "stack.h"
 #include "moove.h"
 
-int backtrack(t_stack a, t_stack b)
+int	backtrack(t_all_stack stacks)
 {
-
 }
 
 int	stack_is_order(stack *a, stack *b)
