@@ -6,7 +6,7 @@
 /*   By: jcaron <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 16:24:29 by jcaron            #+#    #+#             */
-/*   Updated: 2023/01/06 17:44:41 by jcaron           ###   ########.fr       */
+/*   Updated: 2023/01/07 11:23:22 by jcaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ int	rot(t_stack *stack)
 	size_t	i;
 	int		tmp_first;
 
+	if (stack->top < 2)
+		return (-1);
 	tmp_first = stack->tab[stack->top];
 	i = stack->top;
 	while (i > 1)
@@ -33,6 +35,8 @@ int	rev_rot(t_stack *stack)
 	size_t	i;
 	int		tmp_last;
 
+	if (stack->top < 2)
+		return (-1);
 	tmp_last = stack->tab[1];
 	i = 1;
 	while (i < stack->top)
@@ -46,14 +50,18 @@ int	rev_rot(t_stack *stack)
 
 int	dbl_rot(t_stack *a, t_stack *b)
 {
-	rot(a);
-	rot(b);
+	if (rot(a) < 0)
+		return (-1);
+	if (rot(b) < 0)
+		return (-1);
 	return (0);
 }
 
 int	dbl_rev_rot(t_stack *a, t_stack *b)
 {
-	rev_rot(a);
-	rev_rot(b);
+	if (rev_rot(a) < 0)
+		return (-1);
+	if (rev_rot(b) < 0)
+		return (-1);
 	return (0);
 }
