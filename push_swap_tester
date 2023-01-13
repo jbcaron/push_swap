@@ -1,0 +1,29 @@
+#! /bin/bash
+
+
+echo " ____            _       ____                       _____         _            "
+echo "|  _ \\ _   _ ___| |__   / ___|_      ____ _ _ __   |_   _|__  ___| |_ ___ _ __ "
+echo "| |_) | | | / __| '_ \\  \\___ \\ \\ /\\ / / _\` | '_ \\    | |/ _ \\/ __| __/ _ \\ '__|"
+echo "|  __/| |_| \\__ \\ | | |  ___) \\ V  V / (_| | |_) |   | |  __/\\__ \\ ||  __/ |   "
+echo "|_|    \\__,_|___/_| |_| |____/ \\_/\\_/ \\__,_| .__/    |_|\\___||___/\\__\\___|_|   "
+echo "                                           |_|                                 "
+  
+  
+  
+
+read -p "how many numbers to generate ? " SIZE
+
+ARG=$(python -c "import random ; print(*random.sample(range(-10000,10000),"$SIZE"), sep=' ')")
+
+read -p "Do you want to show args ? [y/n] " YN
+
+if [ $YN = "y" ]
+then
+	echo "arguments = " $ARG
+fi
+
+./push_swap $ARG > op.txt
+echo -n "number of operation to sort : "
+cat ./op.txt | wc -l
+echo -n "Checker :                     "
+./checker_linux $ARG < op.txt

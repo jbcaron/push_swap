@@ -6,7 +6,7 @@
 #    By: jcaron <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/26 14:57:57 by jcaron            #+#    #+#              #
-#    Updated: 2023/01/06 17:49:00 by jcaron           ###   ########.fr        #
+#    Updated: 2023/01/13 17:53:01 by jcaron           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,11 +35,14 @@ NAME		=	push_swap
 
 CC			=	clang
 CFLAG		=	-Wall -Wextra -Werror
+LIBFLAG		=	-I./libft -L.libft -lft
+LIBFT		=	./libft/libft.a
 OBJ 		=	$(SRC:%.c=%.o)
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
+	
 	@$(CC) $(OBJ) -o $(NAME)
 	@echo "***compilation of '$<' in '$@'***"
 
