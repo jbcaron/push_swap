@@ -6,10 +6,11 @@
 /*   By: jcaron <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 16:24:29 by jcaron            #+#    #+#             */
-/*   Updated: 2023/01/07 11:23:22 by jcaron           ###   ########.fr       */
+/*   Updated: 2023/01/15 19:21:19 by jcaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "moove.h"
 #include "stack.h"
 
 int	rot(t_stack *stack)

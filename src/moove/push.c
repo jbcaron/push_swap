@@ -6,10 +6,11 @@
 /*   By: jcaron <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 16:23:54 by jcaron            #+#    #+#             */
-/*   Updated: 2023/01/06 17:41:52 by jcaron           ###   ########.fr       */
+/*   Updated: 2023/01/15 19:20:31 by jcaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "moove.h"
 #include "stack.h"
 
 int	push(t_stack *from, t_stack *to)

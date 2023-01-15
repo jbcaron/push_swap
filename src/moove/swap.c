@@ -6,12 +6,12 @@
 /*   By: jcaron <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 16:24:18 by jcaron            #+#    #+#             */
-/*   Updated: 2023/01/06 17:46:10 by jcaron           ###   ########.fr       */
+/*   Updated: 2023/01/15 19:21:27 by jcaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "stack.h"
 #include "moove.h"
+#include "stack.h"
 
 int	swap(t_stack *stack)
 {

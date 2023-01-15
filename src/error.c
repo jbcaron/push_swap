@@ -6,11 +6,13 @@
 /*   By: jcaron <jcaron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 20:08:16 by jcaron            #+#    #+#             */
-/*   Updated: 2022/12/26 18:43:47 by jcaron           ###   ########.fr       */
+/*   Updated: 2023/01/15 19:16:56 by jcaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include <unistd.h>
+#include <stdlib.h>
+#include "error.h"
 
 void __attribute__ ((noreturn))	error(enum e_code_error code)
 {
