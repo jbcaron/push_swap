@@ -6,17 +6,18 @@
 /*   By: jcaron <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 16:24:29 by jcaron            #+#    #+#             */
-/*   Updated: 2023/01/15 19:21:19 by jcaron           ###   ########.fr       */
+/*   Updated: 2023/01/18 15:59:26 by jcaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <unistd.h>
 #include "moove.h"
 #include "stack.h"
 
 int	rot(t_stack *stack)
 {
 	size_t	i;
-	int		tmp_first;
+	t_elem	tmp_first;
 
 	if (stack->top < 2)
 		return (-1);
@@ -24,17 +25,18 @@ int	rot(t_stack *stack)
 	i = stack->top;
 	while (i > 1)
 	{
-		stack->tab[i - 1] = stack->tab[i];
+		stack->tab[i] = stack->tab[i - 1];
 		i--;
 	}
 	stack->tab[i] = tmp_first;
+	write(1, "r\n", 2);
 	return (0);
 }
 
 int	rev_rot(t_stack *stack)
 {
 	size_t	i;
-	int		tmp_last;
+	t_elem	tmp_last;
 
 	if (stack->top < 2)
 		return (-1);
@@ -46,6 +48,7 @@ int	rev_rot(t_stack *stack)
 		i++;
 	}
 	stack->tab[i] = tmp_last;
+	write(1, "r\n", 2);
 	return (0);
 }
 

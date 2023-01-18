@@ -6,40 +6,42 @@
 /*   By: jcaron <jcaron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 16:57:24 by jcaron            #+#    #+#             */
-/*   Updated: 2023/01/15 18:31:24 by jcaron           ###   ########.fr       */
+/*   Updated: 2023/01/17 17:05:49 by jcaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stddef.h>
+#include <stdbool.h>
 #include "parse.h"
 #include "libft.h"
 #include "error.h"
 
-static int	check_arg(int argc, char **argv)
+static int	check_arg(const size_t nb_arg, char **arg)
 {
-	int	i;
+	size_t	i;
 
-	i = 1;
-	while (i < argc)
+	i = 0;
+	while (i < nb_arg)
 	{
-		if (!ft_str_is_int(argv[i]))
-			return (0);
+		if (!ft_str_is_int(arg[i]))
+			return (false);
 		i++;
 	}
-	return (1);
+	return (true);
 }
 
-static int	single_tab(int *tab, int size)
+static int	single_tab(int *tab, const size_t size)
 {
-	int	i;
-	int	j;
+	size_t	i;
+	size_t	j;
 
 	i = 0;
 	while (i < size)
 	{
-		j = i;
+		j = i + 1;
 		while (j < size)
 		{
-			if (tab[i] == tab[j] && i != j)
+			if (tab[i] == tab[j])
 				return (-1);
 			j++;
 		}
@@ -48,23 +50,23 @@ static int	single_tab(int *tab, int size)
 	return (0);
 }
 
-int	*arg_to_tab(int argc, char **argv)
+int	*arg_to_tab(const size_t nb_arg, char **arg)
 {
-	int	*tab;
-	int	i;
+	int		*tab;
+	size_t	i;
 
-	if (argc < 2)
+	if (nb_arg < 1)
 		error(NO_ARG);
-	if (!check_arg(argc, argv))
+	if (!check_arg(nb_arg, arg))
 		error(BAD_ARG);
-	tab = ft_malloc(sizeof(*tab) * (unsigned int)argc * 2);
-	i = 1;
-	while (i < argc)
+	tab = ft_malloc(sizeof(*tab) * nb_arg);
+	i = 0;
+	while (i < nb_arg)
 	{
-		tab[i] = ft_atoi(argv[i]);
+		tab[i] = ft_atoi(arg[i]);
 		i++;
 	}
-	if (single_tab(&tab[1], argc - 1) < 0)
+	if (single_tab(tab, nb_arg) < 0)
 	{
 		ft_free(tab);
 		error(TWO_ARG);

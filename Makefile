@@ -1,4 +1,4 @@
-# **************************************************************************** #
+# *************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
@@ -6,7 +6,7 @@
 #    By: jcaron <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/26 14:57:57 by jcaron            #+#    #+#              #
-#    Updated: 2023/01/15 18:21:25 by jcaron           ###   ########.fr        #
+#    Updated: 2023/01/17 19:22:23 by jcaron           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,10 @@
 
 SRC			=	./src/init_stack.c			\
 				./src/main.c				\
+				./src/chunk_def.c			\
+				./src/bubble_sort.c			\
 				./src/parse.c				\
+				./src/sort_core.c			\
 				./src/moove/rot.c			\
 				./src/moove/swap.c			\
 				./src/moove/push.c			\
@@ -29,7 +32,7 @@ OBJ 		=	$(SRC:%.c=%.o)
 # compilation
 
 CC			=	clang
-CFLAG		=	-Wall -Wextra -Werror
+CFLAG		=	-Wall -Wextra -Werror -g
 
 #dependencies library
 INC_LIB		=	./libft/
@@ -48,7 +51,7 @@ libft:
 
 $(NAME): libft $(OBJ)
 	
-	@$(CC) $(OBJ) -o $(NAME) $(LIBFLAG)
+	@$(CC) $(OBJ) $(CFLAG) -o $(NAME) $(LIBFLAG)
 	@echo "***compilation of $(NAME)***"
 
 

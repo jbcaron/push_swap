@@ -6,22 +6,24 @@
 /*   By: jcaron <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 16:24:18 by jcaron            #+#    #+#             */
-/*   Updated: 2023/01/15 19:21:27 by jcaron           ###   ########.fr       */
+/*   Updated: 2023/01/18 16:00:39 by jcaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <unistd.h>
 #include "moove.h"
 #include "stack.h"
 
 int	swap(t_stack *stack)
 {
-	int	tmp;
+	t_elem	tmp;
 
 	if (stack->top < 2)
 		return (-1);
 	tmp = stack->tab[stack->top];
 	stack->tab[stack->top] = stack->tab[stack->top - 1];
 	stack->tab[stack->top - 1] = tmp;
+	write(1, "s\n", 2);
 	return (0);
 }
 

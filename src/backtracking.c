@@ -6,107 +6,121 @@
 /*   By: jcaron <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/06 18:37:39 by jcaron            #+#    #+#             */
-/*   Updated: 2023/01/07 12:40:08 by jcaron           ###   ########.fr       */
+/*   Updated: 2023/01/18 18:24:13 by jcaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stddef.h>
+#include <stdbool.h>
+#include "backtrack.h"
 #include "stack.h"
 #include "moove.h"
+#include "libft.h"
 
-int	sort(stack a, stack b, )
+void	sort_backtrack(t_stack *a, t_stack *b)
 {
 	t_solution	op;
-	op.max_depth = a.top * 10;
-	op.operation = malloc(sizeof(char) * (a.top * 10 + 1));
-	op->depth = 0;
+
+	op.max_depth = a->top * 5;
+	op.operation = ft_calloc(sizeof(char) * (a->top * 5 + 1));
+	op.depth = 0;
 }
 
-int	backtrack(stack a, stack b, t_solution *op)
+bool	stack_is_order(t_stack *a, t_stack *b)
+{
+	size_t	i;
+
+	if (b->top > 0)
+		return (false);
+	if (a->top == 1)
+		return (true);
+	i = a->top - 1;
+	while (i > 0)
+	{
+		if (a->tab[i].val < a->tab[i + 1].val)
+			return (false);
+		i++;
+	}
+	return (true);
+}
+
+int	op(t_stack *a, t_stack *b, int nb)
+{
+	if (nb == 1)
+		return (sa());
+	if (nb == 2)
+		return (sb());
+	if (nb == 3)
+		return (ss());
+	if (nb == 4)
+		return (pa());
+	if (nb == 5)
+		return (pb());
+	if (nb == 6)
+		return (ra());
+	if (nb == 6)
+		return (rb());
+	if (nb == 7)
+		return (rr());
+	if (nb == 8)
+		return (rra());
+	if (nb == 9)
+		return (rrb());
+	if (nb == 10)
+		return (rrr());
+	return (-1);
+}
+
+int	op_rev(t_stack *a, t_stack *b, int nb)
+{
+	if (nb == 1)
+		return (sa());
+	if (nb == 2)
+		return (sb());
+	if (nb == 3)
+		return (ss());
+	if (nb == 4)
+		return (pb());
+	if (nb == 5)
+		return (pa());
+	if (nb == 6)
+		return (rra());
+	if (nb == 6)
+		return (rrb());
+	if (nb == 7)
+		return (rrr());
+	if (nb == 8)
+		return (ra());
+	if (nb == 9)
+		return (rb());
+	if (nb == 10)
+		return (rr());
+	return (-1);
+}
+
+void	backtrack(t_stack *a, t_stack *b, t_solution *op)
 {
 	int	i;
 
 	i = 0;
 	while (i <= 10)
+	{
 		if (op(a, b, i) == 0)
 		{
-			if (stack_is_order(a, b)x
-				
-			backtrack(a, b, );
+			if (stack_is_order(a, b))
+			{
+				op->max_depth = op->depth;
+				ft_memcpy(op->opti, op->operation, op->depth + 1);
+				op_rev(a, b, i);
+				return ;
+			}
+			backtrack(a, b, op);
+			op_rev(a, b, i);
 		}
+		i++;
+	}
 	if (op->depth == op->max_depth)
 	{
 		return ;
 	}
-
-
-}
-
-int	stack_is_order(stack *a, stack *b)
-{
-	size_t	i;
-
-	if (b->top > 0)
-		return (0);
-	i = a->top - 1;
-	while (i > 0)
-	{
-		if (a->tab[i] < a->tab[i + 1])
-			return (0);
-		i++;
-	}
-	return (1);
-}
-
-int	op(stack a, stack b, int nb)
-{
-	if (nb == 1)
-		return (swap(a));
-	if (nb == 2)
-		return (swap(b));
-	if (nb == 3)
-		return (dbl_swap(a, b));
-	if (nb == 4)
-		return (push(a));
-	if (nb == 5)
-		return (push(b));
-	if (nb == 6)
-		return (rot(a));
-	if (nb == 6)
-		return (rot(b));
-	if (nb == 7)
-		return (dbl_rot(a, b));
-	if (nb == 8)
-		return (rev_rot(a));
-	if (nb == 9)
-		return (rev_rot(b));
-	if (nb == 10)
-		return (dbl_rev_rot(a, b));
-	return (-1);
-}
-
-int	rev_op(stack a, stack b, int nb)
-{
-	if (nb == 1)
-		return (swap(a));
-	if (nb == 2)
-		return (swap(b));
-	if (nb == 3)
-		return (dbl_swap(a, b));
-	if (nb == 4)
-		return (push(b));
-	if (nb == 5)
-		return (push(a));
-	if (nb == 6)
-		return (rev_rot(a));
-	if (nb == 6)
-		return (rev_rot(b));
-	if (nb == 7)
-		return (dbl_rev_rot(a, b));
-	if (nb == 8)
-		return (rot(a));
-	if (nb == 9)
-		return (rot(b));
-	if (nb == 10)
-		return (dbl_rot(a, b));
-	return (-1);
 }

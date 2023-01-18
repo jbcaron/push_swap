@@ -1,32 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   backtrack.h                                        :+:      :+:    :+:   */
+/*   bubble_sort.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jcaron <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/06 18:45:14 by jcaron            #+#    #+#             */
-/*   Updated: 2023/01/18 12:36:39 by jcaron           ###   ########.fr       */
+/*   Created: 2023/01/16 14:56:00 by jcaron            #+#    #+#             */
+/*   Updated: 2023/01/17 15:09:24 by jcaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BACKTRACK_H
-# define  BACKTRACK_H
+#include <stddef.h>
+#include <stdbool.h>
+#include "libft.h"
 
-# include "stack.h"
-
-typedef struct s_all_satack
+void	bubble_sort(int *tab, size_t size)
 {
-	t_stack	a;
-	t_stack	b;
-}	t_all_stack;
+	size_t	i;
+	bool	is_sorted;
+	int		tmp;
 
-typedef struct s_solution
-{
-	char	*operation;
-	char	*opti;
-	size_t	depth;
-	size_t	max_depth;
-}	t_solution;
-
-#endif
+	is_sorted = false;
+	while (!is_sorted)
+	{
+		is_sorted = true;
+		i = 1;
+		while (i < size)
+		{
+			if (tab[i] < tab[i - 1])
+			{
+				is_sorted = false;
+				tmp = tab[i];
+				tab[i] = tab[i - 1];
+				tab[i - 1] = tmp;
+			}
+			i++;
+		}
+	}
+	return ;
+}
