@@ -6,7 +6,7 @@
 /*   By: jcaron <jcaron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 16:57:24 by jcaron            #+#    #+#             */
-/*   Updated: 2023/01/17 17:05:49 by jcaron           ###   ########.fr       */
+/*   Updated: 2023/01/19 19:17:13 by jcaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ int	*arg_to_tab(const size_t nb_arg, char **arg)
 {
 	int		*tab;
 	size_t	i;
+	size_t	j;
 
 	if (nb_arg < 1)
 		error(NO_ARG);
@@ -61,10 +62,12 @@ int	*arg_to_tab(const size_t nb_arg, char **arg)
 		error(BAD_ARG);
 	tab = ft_malloc(sizeof(*tab) * nb_arg);
 	i = 0;
+	j = nb_arg - 1;
 	while (i < nb_arg)
 	{
-		tab[i] = ft_atoi(arg[i]);
+		tab[i] = ft_atoi(arg[j]);
 		i++;
+		j--;
 	}
 	if (single_tab(tab, nb_arg) < 0)
 	{

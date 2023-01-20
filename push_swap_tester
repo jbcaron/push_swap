@@ -11,19 +11,25 @@ echo "                                           |_|                            
   
   
 
-read -p "how many numbers to generate ? " SIZE
+read -p "How many numbers to generate ? " SIZE
+read -p "How many tests ? " NB_TEST
 
-ARG=$(python -c "import random ; print(*random.sample(range(-10000,10000),"$SIZE"), sep=' ')")
+for (( i=1; i<=$NB_TEST; i++))
+do
 
-read -p "Do you want to show args ? [y/n] " YN
+	ARG=$(python -c "import random ; print(*random.sample(range(-10000,10000),"$SIZE"), sep=' ')")
 
-if [ $YN = "y" ]
-then
-	echo "arguments = " $ARG
-fi
+#read -p "Do you want to show args ? [y/n] " YN
+#
+#if [ $YN = "y" ]
+#then
+#	echo "arguments = " $ARG
+#fi
 
-./push_swap $ARG > op.txt
-echo -n "number of operation to sort : "
-cat ./op.txt | wc -l
-echo -n "Checker :                     "
-./checker_linux $ARG < op.txt
+	./push_swap $ARG > op.txt
+	echo -n "Number of move : "
+	cat ./op.txt | wc -l
+	echo -n "   Checker :     "
+	./checker_linux $ARG < op.txt
+
+done

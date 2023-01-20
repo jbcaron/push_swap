@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse.h                                            :+:      :+:    :+:   */
+/*   tab_to_index.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By:  <>                                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/19 18:17:48 by                   #+#    #+#             */
-/*   Updated: 2023/01/19 18:17:48 by                  ###   ########.fr       */
+/*   Created: 2023/01/19 23:34:17 by                   #+#    #+#             */
+/*   Updated: 2023/01/19 23:34:17 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PARSE_H
-# define PARSE_H
+#ifndef TAB_TO_INDEX_H
+# define TAB_TO_INDEX_H
 
 # include <stddef.h>
 
-int	*arg_to_tab(const size_t nb_arg, char **arg);
+unsigned int	*tab_to_index(int *tab, size_t size);
 
 #endif

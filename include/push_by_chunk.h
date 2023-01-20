@@ -1,24 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push.c                                             :+:      :+:    :+:   */
+/*   push_by_chunk.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcaron <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: jcaron <jcaron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/28 16:23:54 by jcaron            #+#    #+#             */
-/*   Updated: 2023/01/18 15:58:52 by jcaron           ###   ########.fr       */
+/*   Created: 2023/01/19 18:17:49 by jcaron            #+#    #+#             */
+/*   Updated: 2023/01/19 23:55:13 by jcaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include "moove.h"
+#ifndef PUSH_BY_CHUNK_H
+# define PUSH_BY_CHUNK_H
+
 #include "stack.h"
 
-int	push(t_stack *from, t_stack *to)
-{
-	if (from->top < 1)
-		return (-1);
-	to->tab[++to->top] = from->tab[from->top--];
-	write(1, "p\n", 2);
-	return (0);
-}
+void	sort_chunk(t_stack *a, t_stack *b);
+
+#endif

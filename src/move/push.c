@@ -1,29 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_stack.c                                       :+:      :+:    :+:   */
+/*   push.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jcaron <jcaron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/28 15:48:49 by jcaron            #+#    #+#             */
-/*   Updated: 2023/01/20 00:03:29 by jcaron           ###   ########.fr       */
+/*   Created: 2022/12/28 16:23:54 by jcaron            #+#    #+#             */
+/*   Updated: 2023/01/20 00:07:56 by jcaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
-#include "init_stack.h"
+#include <unistd.h>
+#include <stdbool.h>
+#include "move.h"
 #include "stack.h"
-#include "parse.h"
-#include "tab_to_index.h"
-#include "libft.h"
 
-void	init_stack(t_stack *a, t_stack *b, const size_t size, char **arg)
+bool	push(t_stack *from, t_stack *to)
 {
-	unsigned int	*tab;
-
-	tab = tab_to_index(arg_to_tab(size, arg), size);
-	a->tab = tab;
-	a->top = size;
-	b->tab = ft_malloc(sizeof(*(b->tab)) * (size + 1));
-	b->top = 0;
+	if (from->top < 1)
+		return (false);
+	to->tab[++to->top] = from->tab[from->top--];
+	return (true);
 }

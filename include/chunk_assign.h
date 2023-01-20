@@ -1,32 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   backtrack.h                                        :+:      :+:    :+:   */
+/*   chunk_assign.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcaron <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By:  <>                                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/06 18:45:14 by jcaron            #+#    #+#             */
-/*   Updated: 2023/01/18 12:36:39 by jcaron           ###   ########.fr       */
+/*   Created: 2023/01/19 18:17:49 by                   #+#    #+#             */
+/*   Updated: 2023/01/19 18:17:49 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BACKTRACK_H
-# define  BACKTRACK_H
+#ifndef CHUNK_ASSIGN_H
+# define CHUNK_ASSIGN_H
 
-# include "stack.h"
+# include <stddef.h>
 
-typedef struct s_all_satack
-{
-	t_stack	a;
-	t_stack	b;
-}	t_all_stack;
-
-typedef struct s_solution
-{
-	char	*operation;
-	char	*opti;
-	size_t	depth;
-	size_t	max_depth;
-}	t_solution;
+void	chunk_assign(t_stack *stack, int *tab_sorted, const size_t size);
 
 #endif

@@ -3,38 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   swap.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcaron <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: jcaron <jcaron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 16:24:18 by jcaron            #+#    #+#             */
-/*   Updated: 2023/01/18 16:00:39 by jcaron           ###   ########.fr       */
+/*   Updated: 2023/01/20 00:25:28 by jcaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
-#include "moove.h"
+#include <stdbool.h>
+#include "move.h"
 #include "stack.h"
 
-int	swap(t_stack *stack)
+bool	swap(t_stack *stack)
 {
-	t_elem	tmp;
+	unsigned int	tmp;
 
 	if (stack->top < 2)
-		return (-1);
+		return (false);
 	tmp = stack->tab[stack->top];
 	stack->tab[stack->top] = stack->tab[stack->top - 1];
 	stack->tab[stack->top - 1] = tmp;
-	write(1, "s\n", 2);
-	return (0);
+	return (true);
 }
 
-int	dbl_swap(t_stack *stack_1, t_stack *stack_2)
+bool	dbl_swap(t_stack *stack_1, t_stack *stack_2)
 {
-	if (swap(stack_1) < 0)
-		return (-1);
-	if (swap(stack_2) < 0)
-	{
-		swap(stack_1);
-		return (-2);
-	}
-	return (0);
+	if (stack_1->top < 2 || stack_1->top < 2)
+		return (false);
+	swap(stack_1);
+	swap(stack_2);
+	return (true);
 }

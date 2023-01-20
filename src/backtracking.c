@@ -3,28 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   backtracking.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcaron <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: jcaron <jcaron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/06 18:37:39 by jcaron            #+#    #+#             */
-/*   Updated: 2023/01/18 18:24:13 by jcaron           ###   ########.fr       */
+/*   Updated: 2023/01/19 18:42:47 by jcaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stddef.h>
 #include <stdbool.h>
-#include "backtrack.h"
+#include "backtracking.h"
 #include "stack.h"
-#include "moove.h"
+#include "move.h"
 #include "libft.h"
-
-void	sort_backtrack(t_stack *a, t_stack *b)
-{
-	t_solution	op;
-
-	op.max_depth = a->top * 5;
-	op.operation = ft_calloc(sizeof(char) * (a->top * 5 + 1));
-	op.depth = 0;
-}
 
 bool	stack_is_order(t_stack *a, t_stack *b)
 {
@@ -39,12 +30,12 @@ bool	stack_is_order(t_stack *a, t_stack *b)
 	{
 		if (a->tab[i].val < a->tab[i + 1].val)
 			return (false);
-		i++;
+		i--;
 	}
 	return (true);
 }
 
-int	op(t_stack *a, t_stack *b, int nb)
+int	mv(t_stack *a, t_stack *b, int nb)
 {
 	if (nb == 1)
 		return (sa());
@@ -71,7 +62,7 @@ int	op(t_stack *a, t_stack *b, int nb)
 	return (-1);
 }
 
-int	op_rev(t_stack *a, t_stack *b, int nb)
+int	mv_rev(t_stack *a, t_stack *b, int nb)
 {
 	if (nb == 1)
 		return (sa());
@@ -102,25 +93,43 @@ void	backtrack(t_stack *a, t_stack *b, t_solution *op)
 {
 	int	i;
 
+	op->depth++;
+	if (op->depth == op->max_depth)
+	{
+		op->depth--;
+		return ;
+	}
 	i = 0;
 	while (i <= 10)
 	{
-		if (op(a, b, i) == 0)
+		if (mv(a, b, i) == 0)
 		{
 			if (stack_is_order(a, b))
 			{
 				op->max_depth = op->depth;
 				ft_memcpy(op->opti, op->operation, op->depth + 1);
-				op_rev(a, b, i);
+				mv_rev(a, b, i);
+				op->depth--;
 				return ;
 			}
 			backtrack(a, b, op);
-			op_rev(a, b, i);
+			mv_rev(a, b, i);
 		}
 		i++;
 	}
-	if (op->depth == op->max_depth)
-	{
-		return ;
-	}
+	op->depth--;
+	return ;
+}
+
+void	sort_backtrack(t_stack *a, t_stack *b)
+{
+	t_solution	op;
+
+	op.max_depth = a->top * 5;
+	op.operation = ft_calloc(sizeof(char), a->top * 5 + 1);
+	op.opti = ft_calloc(sizeof(char), a->top * 5 + 1);
+	op.depth = 0;
+	backtrack(a, b, &op);
+	//op_print(op.opti);
+	return ;
 }

@@ -1,29 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_stack.c                                       :+:      :+:    :+:   */
+/*   init_stack.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jcaron <jcaron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/28 15:48:49 by jcaron            #+#    #+#             */
-/*   Updated: 2023/01/20 00:03:29 by jcaron           ###   ########.fr       */
+/*   Created: 2023/01/19 18:17:48 by jcaron            #+#    #+#             */
+/*   Updated: 2023/01/19 18:19:43 by jcaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
-#include "init_stack.h"
-#include "stack.h"
-#include "parse.h"
-#include "tab_to_index.h"
-#include "libft.h"
+#ifndef INIT_STACK_H
+# define INIT_STACK_H
 
-void	init_stack(t_stack *a, t_stack *b, const size_t size, char **arg)
-{
-	unsigned int	*tab;
+# include <stddef.h>
+# include "stack.h"
 
-	tab = tab_to_index(arg_to_tab(size, arg), size);
-	a->tab = tab;
-	a->top = size;
-	b->tab = ft_malloc(sizeof(*(b->tab)) * (size + 1));
-	b->top = 0;
-}
+void	init_stack(t_stack *a, t_stack *b, const size_t size, char **arg);
+
+#endif

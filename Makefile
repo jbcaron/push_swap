@@ -6,7 +6,7 @@
 #    By: jcaron <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/26 14:57:57 by jcaron            #+#    #+#              #
-#    Updated: 2023/01/17 19:22:23 by jcaron           ###   ########.fr        #
+#    Updated: 2023/01/20 00:26:49 by jcaron           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,13 +14,15 @@
 
 SRC			=	./src/init_stack.c			\
 				./src/main.c				\
-				./src/chunk_def.c			\
+				./src/tab_to_index.c		\
+				./src/push_by_chunk.c		\
 				./src/bubble_sort.c			\
 				./src/parse.c				\
 				./src/sort_core.c			\
-				./src/moove/rot.c			\
-				./src/moove/swap.c			\
-				./src/moove/push.c			\
+				./src/move/rot.c			\
+				./src/move/swap.c			\
+				./src/move/push.c			\
+				./src/move/move_all.c		\
 				./src/error.c
 
 INC_D		=	./include/

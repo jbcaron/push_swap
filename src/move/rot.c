@@ -3,24 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   rot.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcaron <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: jcaron <jcaron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 16:24:29 by jcaron            #+#    #+#             */
-/*   Updated: 2023/01/18 15:59:26 by jcaron           ###   ########.fr       */
+/*   Updated: 2023/01/20 00:24:59 by jcaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stddef.h>
 #include <unistd.h>
-#include "moove.h"
+#include <stdbool.h>
+#include "move.h"
 #include "stack.h"
 
-int	rot(t_stack *stack)
+bool	rot(t_stack *stack)
 {
-	size_t	i;
-	t_elem	tmp_first;
+	size_t			i;
+	unsigned int	tmp_first;
 
 	if (stack->top < 2)
-		return (-1);
+		return (false);
 	tmp_first = stack->tab[stack->top];
 	i = stack->top;
 	while (i > 1)
@@ -29,17 +31,16 @@ int	rot(t_stack *stack)
 		i--;
 	}
 	stack->tab[i] = tmp_first;
-	write(1, "r\n", 2);
-	return (0);
+	return (true);
 }
 
-int	rev_rot(t_stack *stack)
+bool	rev_rot(t_stack *stack)
 {
-	size_t	i;
-	t_elem	tmp_last;
+	size_t			i;
+	unsigned int	tmp_last;
 
 	if (stack->top < 2)
-		return (-1);
+		return (false);
 	tmp_last = stack->tab[1];
 	i = 1;
 	while (i < stack->top)
@@ -48,24 +49,23 @@ int	rev_rot(t_stack *stack)
 		i++;
 	}
 	stack->tab[i] = tmp_last;
-	write(1, "r\n", 2);
-	return (0);
+	return (true);
 }
 
-int	dbl_rot(t_stack *a, t_stack *b)
+bool	dbl_rot(t_stack *stack_1, t_stack *stack_2)
 {
-	if (rot(a) < 0)
-		return (-1);
-	if (rot(b) < 0)
-		return (-1);
-	return (0);
+	if (stack_1->top < 2 || stack_2->top < 2)
+		return (false);
+	rot(stack_1);
+	rot(stack_2);
+	return (true);
 }
 
-int	dbl_rev_rot(t_stack *a, t_stack *b)
+bool	dbl_rev_rot(t_stack *stack_1, t_stack *stack_2)
 {
-	if (rev_rot(a) < 0)
-		return (-1);
-	if (rev_rot(b) < 0)
-		return (-1);
-	return (0);
+	if (stack_1->top < 2 || stack_2->top < 2)
+		return (false);
+	rev_rot(stack_1);
+	rev_rot(stack_2);
+	return (true);
 }
