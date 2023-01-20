@@ -6,9 +6,10 @@
 /*   By: jcaron <jcaron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 17:39:28 by jcaron            #+#    #+#             */
-/*   Updated: 2023/01/20 01:22:31 by jcaron           ###   ########.fr       */
+/*   Updated: 2023/01/20 15:55:12 by jcaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include <stdio.h>
 
 #include <stddef.h>
 #include <stdbool.h>
@@ -61,28 +62,44 @@ size_t	get_max_rank(t_stack *stack)
 
 **/
 
-static void	put_top_val(t_stack *b, const unsigned int search)
+static bool	push_if_a(t_stack *a, t_stack *b, unsigned int search)
+{
+	if (b->tab[b->top] == search)
+	{
+		pa();
+		return (true);
+	}
+	return (false);
+}
+
+static void	put_top(t_stack *a, t_stack *b, unsigned int search)
 {
 	size_t	rot_op;
 	size_t	rev_rot_op;
 
-	rot_op = 0;
+	rot_op = 1;
 	rev_rot_op = 1;
 	if (b->tab[b->top] == search)
 		return ;
-	while (b->tab[b->top - rot_op] != search && b->tab[b->top - rot_op] != search - 1)
+	while (b->tab[b->top - rot_op] != search)
 		rot_op++;
-	while (b->tab[rev_rot_op] != search && b->tab[rev_rot_op] != search - 1)
+	while (b->tab[rev_rot_op] != search)
 		rev_rot_op++;
 	if (rot_op <= rev_rot_op)
 	{
 		while (rot_op--)
-			rb();
+		{
+			if (push_if_a(a, b, search - 1) == false)
+				rb();
+		}
 	}
 	else
 	{
 		while (rev_rot_op--)
+		{
+			push_if_a(a, b, search - 1);
 			rrb();
+		}
 	}
 }
 
@@ -108,13 +125,15 @@ void	sort_core(t_stack *a, t_stack *b)
 
 	sort_chunk(a, b);
 	max = get_max(b);
-	while (b->top)
+	while (max)
 	{
-		max = get_max(b);
-		put_top_val(b, max);
+		put_top(a, b, max);
 		pa();
 		if (a->top > 1 && a->tab[a->top] > a->tab[a->top - 1])
+		{
 			sa();
+			max--;
+		}
 		max--;
 	}
 }

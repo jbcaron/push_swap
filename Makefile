@@ -6,7 +6,7 @@
 #    By: jcaron <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/26 14:57:57 by jcaron            #+#    #+#              #
-#    Updated: 2023/01/20 00:26:49 by jcaron           ###   ########.fr        #
+#    Updated: 2023/01/20 14:43:57 by jcaron           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,7 @@ OBJ 		=	$(SRC:%.c=%.o)
 # compilation
 
 CC			=	clang
-CFLAG		=	-Wall -Wextra -Werror -g
+CFLAG		=	-Wall -Wextra -Werror -g3
 
 #dependencies library
 INC_LIB		=	./libft/

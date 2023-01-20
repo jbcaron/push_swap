@@ -6,7 +6,7 @@
 /*   By: jcaron <jcaron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 18:04:23 by jcaron            #+#    #+#             */
-/*   Updated: 2023/01/20 01:15:10 by jcaron           ###   ########.fr       */
+/*   Updated: 2023/01/20 16:13:40 by jcaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,14 +46,13 @@ void	sort_chunk(t_stack *a, t_stack *b)
 	unsigned int	chunk_size;
 	unsigned int	i;
 
-	chunk_size = 12 + (unsigned int)(a->top / 100);
-	chunk_size = 15;
+	chunk_size = 24 + (a->top / 100);
 	i = 1;
 	while (a->top)
 	{
 		put_top_chunk(a, i + chunk_size);
 		pb();
-		if (b->tab[b->top] > i + chunk_size / 2 && i > chunk_size)
+		if (b->tab[b->top] < i)
 			rb();
 		i++;
 	}
