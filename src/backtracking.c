@@ -6,10 +6,14 @@
 /*   By: jcaron <jcaron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/06 18:37:39 by jcaron            #+#    #+#             */
-/*   Updated: 2023/01/19 18:42:47 by jcaron           ###   ########.fr       */
+/*   Updated: 2023/01/25 19:20:04 by jcaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
 
+#include <unistd.h>
 #include <stddef.h>
 #include <stdbool.h>
 #include "backtracking.h"
@@ -17,79 +21,81 @@
 #include "move.h"
 #include "libft.h"
 
-bool	stack_is_order(t_stack *a, t_stack *b)
+#define DEPTH 3
+
+static bool	stack_is_order(t_stack *a, t_stack *b)
 {
-	size_t	i;
+	unsigned int	i;
 
 	if (b->top > 0)
 		return (false);
 	if (a->top == 1)
 		return (true);
-	i = a->top - 1;
+	i = a->top;
 	while (i > 0)
 	{
-		if (a->tab[i].val < a->tab[i + 1].val)
+		if (a->tab[i] != a->top - i + 1)
 			return (false);
 		i--;
 	}
 	return (true);
 }
 
-int	mv(t_stack *a, t_stack *b, int nb)
+static bool	mv(t_stack *a, t_stack *b, int nb)
 {
 	if (nb == 1)
-		return (sa());
+		return (swap(a));
 	if (nb == 2)
-		return (sb());
+		return (swap(b));
 	if (nb == 3)
-		return (ss());
+		return (dbl_swap(a, b));
 	if (nb == 4)
-		return (pa());
+		return (push(b, a));
 	if (nb == 5)
-		return (pb());
+		return (push(a, b));
 	if (nb == 6)
-		return (ra());
+		return (rot(a));
 	if (nb == 6)
-		return (rb());
+		return (rot(b));
 	if (nb == 7)
-		return (rr());
+		return (dbl_rot(a, b));
 	if (nb == 8)
-		return (rra());
+		return (rev_rot(a));
 	if (nb == 9)
-		return (rrb());
+		return (rev_rot(b));
 	if (nb == 10)
-		return (rrr());
+		return (dbl_rev_rot(a, b));
 	return (-1);
 }
 
-int	mv_rev(t_stack *a, t_stack *b, int nb)
+static bool	mv_rev(t_stack *a, t_stack *b, int nb)
 {
 	if (nb == 1)
-		return (sa());
+		return (swap(a));
 	if (nb == 2)
-		return (sb());
+		return (swap(b));
 	if (nb == 3)
-		return (ss());
+		return (dbl_swap(a, b));
 	if (nb == 4)
-		return (pb());
+		return (push(a, b));
 	if (nb == 5)
-		return (pa());
+		return (push(b, a));
 	if (nb == 6)
-		return (rra());
+		return (rev_rot(a));
 	if (nb == 6)
-		return (rrb());
+		return (rev_rot(b));
 	if (nb == 7)
-		return (rrr());
+		return (dbl_rev_rot(a, b));
 	if (nb == 8)
-		return (ra());
+		return (rot(a));
 	if (nb == 9)
-		return (rb());
+		return (rot(b));
 	if (nb == 10)
-		return (rr());
+		return (dbl_rot(a, b));
 	return (-1);
 }
 
-void	backtrack(t_stack *a, t_stack *b, t_solution *op)
+static void	backtrack(t_stack *a, t_stack *b, t_solution *op)
 {
 	int	i;
 
@@ -102,12 +108,13 @@ void	backtrack(t_stack *a, t_stack *b, t_solution *op)
 	i = 0;
 	while (i <= 10)
 	{
-		if (mv(a, b, i) == 0)
+		if (mv(a, b, i) == true)
 		{
+			op->operation[op->depth - 1] = i;
 			if (stack_is_order(a, b))
 			{
 				op->max_depth = op->depth;
-				ft_memcpy(op->opti, op->operation, op->depth + 1);
+				memcpy(op->opti, op->operation, op->depth);
 				mv_rev(a, b, i);
 				op->depth--;
 				return ;
@@ -121,15 +128,50 @@ void	backtrack(t_stack *a, t_stack *b, t_solution *op)
 	return ;
 }
 
+static void	op_print(char *op, size_t depth)
+{
+	size_t	i;
+
+	i = 0;
+	while (i < depth)
+	{
+		if (op[i] == 1)
+			write(1, "sa\n", 3);
+		if (op[i] == 2)
+			write(1, "sb\n", 3);
+		if (op[i] == 3)
+			write(1, "ss\n", 3);
+		if (op[i] == 4)
+			write(1, "pa\n", 3);
+		if (op[i] == 5)
+			write(1, "pb\n", 3);
+		if (op[i] == 6)
+			write(1, "ra\n", 3);
+		if (op[i] == 6)
+			write(1, "rb\n", 3);
+		if (op[i] == 7)
+			write(1, "rr\n", 3);
+		if (op[i] == 8)
+			write(1, "rra\n", 4);
+		if (op[i] == 9)
+			write(1, "rrb\n", 4);
+		if (op[i] == 10)
+			write(1, "rrr\n", 4);
+		i++;
+	}
+}
+
 void	sort_backtrack(t_stack *a, t_stack *b)
 {
 	t_solution	op;
 
-	op.max_depth = a->top * 5;
-	op.operation = ft_calloc(sizeof(char), a->top * 5 + 1);
-	op.opti = ft_calloc(sizeof(char), a->top * 5 + 1);
+	if (stack_is_order(a, b))
+		return ;
+	op.max_depth = a->top * DEPTH;
+	op.operation = ft_malloc(sizeof(char) * a->top * DEPTH);
+	op.opti = ft_malloc(sizeof(char) * a->top * DEPTH);
 	op.depth = 0;
 	backtrack(a, b, &op);
-	//op_print(op.opti);
+	op_print(op.opti, op.max_depth);
 	return ;
 }

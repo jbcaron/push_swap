@@ -18,6 +18,7 @@ SRC			=	./src/init_stack.c			\
 				./src/push_by_chunk.c		\
 				./src/bubble_sort.c			\
 				./src/parse.c				\
+				./src/backtracking.c		\
 				./src/sort_core.c			\
 				./src/move/rot.c			\
 				./src/move/swap.c			\
@@ -34,7 +35,7 @@ OBJ 		=	$(SRC:%.c=%.o)
 # compilation
 
 CC			=	clang
-CFLAG		=	-Wall -Wextra -Werror -g3
+CFLAG		=	-Wall -Wextra -Werror -O2
 
 #dependencies library
 INC_LIB		=	./libft/

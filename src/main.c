@@ -6,7 +6,7 @@
 /*   By: jcaron <jcaron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 13:49:43 by jcaron            #+#    #+#             */
-/*   Updated: 2023/01/20 15:03:11 by jcaron           ###   ########.fr       */
+/*   Updated: 2023/01/25 19:27:50 by jcaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include "init_stack.h"
 #include "libft.h"
 #include "backtracking.h"
+#include "sort_core.h"
 
 void	sort_core(t_stack *a, t_stack *b);
 
@@ -41,9 +42,10 @@ int	main(int argc, char **argv)
 	t_stack	b;
 
 	init_stack(&a, &b, (size_t)(argc - 1), &argv[1]);
-	//sort_backtrack(&a, &b);
-	//print_stack(&a);
-	sort_core(&a, &b);
+	if (argc <= 7)
+		sort_backtrack(&a, &b);
+	else
+		sort_core(&a, &b);
 	ft_free_all();
 	return (0);
 }

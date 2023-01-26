@@ -46,7 +46,7 @@ do
 	fi
 	
 	checker=$(	./checker_linux $ARG < op.txt)	
-	#echo "Number of move : " $move "("$checker")"
+	echo "Number of move : " $move "("$checker")"
 
 done
 
