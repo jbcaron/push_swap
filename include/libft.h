@@ -6,7 +6,7 @@
 /*   By: jcaron <jcaron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 13:42:10 by jcaron            #+#    #+#             */
-/*   Updated: 2023/01/15 18:29:10 by jcaron           ###   ########.fr       */
+/*   Updated: 2023/01/26 18:48:40 by jcaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ size_t		ds_append_char(t_dyn_str *ds, char c);
 size_t		ds_append_str(t_dyn_str *ds, char *str);
 size_t		get_closer_pow(size_t n);
 
-int			ft_str_is_digit(const char *str);
-int			ft_str_is_int(char *str);
+bool		ft_str_is_digit(const char *str);
+bool		ft_str_is_int(const char *str);
 char		*get_next_line(int fd);
 int			ft_printf(const char *format, ...);
 int			ft_atoi(const char *str);

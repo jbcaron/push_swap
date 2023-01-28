@@ -6,7 +6,7 @@
 /*   By: jcaron <jcaron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 16:57:24 by jcaron            #+#    #+#             */
-/*   Updated: 2023/01/19 19:17:13 by jcaron           ###   ########.fr       */
+/*   Updated: 2023/01/26 19:02:18 by jcaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include "libft.h"
 #include "error.h"
 
-static int	check_arg(const size_t nb_arg, char **arg)
+static int	check_arg(size_t nb_arg, char **arg)
 {
 	size_t	i;
 
@@ -30,7 +30,7 @@ static int	check_arg(const size_t nb_arg, char **arg)
 	return (true);
 }
 
-static int	single_tab(int *tab, const size_t size)
+static int	single_tab(int *tab, size_t size)
 {
 	size_t	i;
 	size_t	j;
@@ -50,7 +50,7 @@ static int	single_tab(int *tab, const size_t size)
 	return (0);
 }
 
-int	*arg_to_tab(const size_t nb_arg, char **arg)
+int	*arg_to_tab(size_t nb_arg, char **arg)
 {
 	int		*tab;
 	size_t	i;

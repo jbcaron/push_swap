@@ -6,7 +6,7 @@
 #    By: jcaron <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/26 14:57:57 by jcaron            #+#    #+#              #
-#    Updated: 2023/01/20 14:43:57 by jcaron           ###   ########.fr        #
+#    Updated: 2023/01/28 17:15:32 by jcaron           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,7 @@ SRC			=	./src/init_stack.c			\
 				./src/move/swap.c			\
 				./src/move/push.c			\
 				./src/move/move_all.c		\
+				./src/stack_is_order.c		\
 				./src/error.c
 
 INC_D		=	./include/
@@ -35,7 +36,7 @@ OBJ 		=	$(SRC:%.c=%.o)
 # compilation
 
 CC			=	clang
-CFLAG		=	-Wall -Wextra -Werror -O2
+CFLAG		=	-Wall -Wextra -Werror -O2 -g3
 
 #dependencies library
 INC_LIB		=	./libft/

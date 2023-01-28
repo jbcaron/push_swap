@@ -13,6 +13,7 @@ echo "                                           |_|                            
 
 read -p "How many numbers to generate ? " SIZE
 read -p "How many tests ? " NB_TEST
+echo
 
 min_move=1000000
 max_move=0
@@ -45,13 +46,16 @@ do
 		max_move=$move
 	fi
 	
-	checker=$(	./checker_linux $ARG < op.txt)	
-	echo "Number of move : " $move "("$checker")"
+	checker=$(	./checker_linux $ARG < op.txt)
+	echo -ne "\033[2K\r"
+	echo -n "Move : " $move "("$checker")"
+
 
 done
 
 average=$(echo "scale=2 ; 1.0 * $tot_move / $NB_TEST" | bc -l)
 
+echo -ne "\033[2K\r"
 echo "Minimum of move : " $min_move
 echo "Maximum of move : " $max_move
 echo "Average of move : " $average

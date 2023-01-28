@@ -6,7 +6,7 @@
 /*   By: jcaron <jcaron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 18:17:49 by jcaron            #+#    #+#             */
-/*   Updated: 2023/01/19 23:55:13 by jcaron           ###   ########.fr       */
+/*   Updated: 2023/01/26 20:00:41 by jcaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,6 @@
 
 #include "stack.h"
 
-void	sort_chunk(t_stack *a, t_stack *b);
+void	push_by_chunk(t_stack *a, t_stack *b);
 
 #endif

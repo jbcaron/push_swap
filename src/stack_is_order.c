@@ -1,42 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bubble_sort.c                                      :+:      :+:    :+:   */
+/*   stack_is_order.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jcaron <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/16 14:56:00 by jcaron            #+#    #+#             */
-/*   Updated: 2023/01/26 19:52:19 by jcaron           ###   ########.fr       */
+/*   Created: 2023/01/28 16:17:42 by jcaron            #+#    #+#             */
+/*   Updated: 2023/01/28 16:24:33 by jcaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stddef.h>
 #include <stdbool.h>
-#include "bubble_sort.h"
-#include "libft.h"
+#include "stack_is_order.h"
+#include "stack.h"
 
-void	bubble_sort(int *tab, size_t size)
+bool	stack_is_order(t_stack *a, t_stack *b)
 {
 	size_t	i;
-	bool	is_sorted;
-	int		tmp;
 
-	is_sorted = false;
-	while (!is_sorted)
+	if (b->top > 0)
+		return (false);
+	if (a->top == 1)
+		return (true);
+	i = a->top;
+	while (i > 0)
 	{
-		is_sorted = true;
-		i = 1;
-		while (i < size)
-		{
-			if (tab[i] < tab[i - 1])
-			{
-				is_sorted = false;
-				tmp = tab[i];
-				tab[i] = tab[i - 1];
-				tab[i - 1] = tmp;
-			}
-			i++;
-		}
+		if (a->tab[i] != a->top - i + 1)
+			return (false);
+		i--;
 	}
-	return ;
+	return (true);
 }

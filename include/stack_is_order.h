@@ -1,20 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   chunk_assign.h                                     :+:      :+:    :+:   */
+/*   stack_is_order.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By:  <>                                        +#+  +:+       +#+        */
+/*   By: jcaron <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/19 18:17:49 by                   #+#    #+#             */
-/*   Updated: 2023/01/19 18:17:49 by                  ###   ########.fr       */
+/*   Created: 2023/01/28 16:19:38 by jcaron            #+#    #+#             */
+/*   Updated: 2023/01/28 16:24:26 by jcaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CHUNK_ASSIGN_H
-# define CHUNK_ASSIGN_H
+#ifndef STACK_IS_ORDER_H
+# define STACK_IS_ORDER_H
 
-# include <stddef.h>
+# include <stdbool.h>
+# include "stack.h"
 
-void	chunk_assign(t_stack *stack, int *tab_sorted, const size_t size);
+bool	stack_is_order(t_stack *a, t_stack *b);
 
 #endif

@@ -6,42 +6,35 @@
 /*   By: jcaron <jcaron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/06 18:37:39 by jcaron            #+#    #+#             */
-/*   Updated: 2023/01/25 19:20:04 by jcaron           ###   ########.fr       */
+/*   Updated: 2023/01/28 17:15:06 by jcaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <stdlib.h>
-#include <string.h>
-#include <stdio.h>
 
-#include <unistd.h>
 #include <stddef.h>
 #include <stdbool.h>
 #include "backtracking.h"
 #include "stack.h"
 #include "move.h"
 #include "libft.h"
+#include "stack_is_order.h"
 
 #define DEPTH 3
 
-static bool	stack_is_order(t_stack *a, t_stack *b)
-{
-	unsigned int	i;
+static const char	*g_move_msg[11] = {
+	"sa",
+	"sb",
+	"ss",
+	"pa",
+	"pb",
+	"ra",
+	"rb",
+	"rr",
+	"rra",
+	"rrb",
+	"rrr"
+};
 
-	if (b->top > 0)
-		return (false);
-	if (a->top == 1)
-		return (true);
-	i = a->top;
-	while (i > 0)
-	{
-		if (a->tab[i] != a->top - i + 1)
-			return (false);
-		i--;
-	}
-	return (true);
-}
-
-static bool	mv(t_stack *a, t_stack *b, int nb)
+static bool	mv(t_stack *a, t_stack *b, char nb)
 {
 	if (nb == 1)
 		return (swap(a));
@@ -68,7 +61,7 @@ static bool	mv(t_stack *a, t_stack *b, int nb)
 	return (-1);
 }
 
-static bool	mv_rev(t_stack *a, t_stack *b, int nb)
+static bool	mv_rev(t_stack *a, t_stack *b, char nb)
 {
 	if (nb == 1)
 		return (swap(a));
@@ -97,16 +90,15 @@ static bool	mv_rev(t_stack *a, t_stack *b, int nb)
 
 static void	backtrack(t_stack *a, t_stack *b, t_solution *op)
 {
-	int	i;
+	char	i;
 
-	op->depth++;
-	if (op->depth == op->max_depth)
+	if (++op->depth == op->max_depth)
 	{
 		op->depth--;
 		return ;
 	}
-	i = 0;
-	while (i <= 10)
+	i = -1;
+	while (++i <= 10)
 	{
 		if (mv(a, b, i) == true)
 		{
@@ -114,18 +106,15 @@ static void	backtrack(t_stack *a, t_stack *b, t_solution *op)
 			if (stack_is_order(a, b))
 			{
 				op->max_depth = op->depth;
-				memcpy(op->opti, op->operation, op->depth);
+				ft_memcpy(op->opti, op->operation, op->depth);
 				mv_rev(a, b, i);
-				op->depth--;
-				return ;
+				break ;
 			}
 			backtrack(a, b, op);
 			mv_rev(a, b, i);
 		}
-		i++;
 	}
 	op->depth--;
-	return ;
 }
 
 static void	op_print(char *op, size_t depth)
@@ -135,29 +124,7 @@ static void	op_print(char *op, size_t depth)
 	i = 0;
 	while (i < depth)
 	{
-		if (op[i] == 1)
-			write(1, "sa\n", 3);
-		if (op[i] == 2)
-			write(1, "sb\n", 3);
-		if (op[i] == 3)
-			write(1, "ss\n", 3);
-		if (op[i] == 4)
-			write(1, "pa\n", 3);
-		if (op[i] == 5)
-			write(1, "pb\n", 3);
-		if (op[i] == 6)
-			write(1, "ra\n", 3);
-		if (op[i] == 6)
-			write(1, "rb\n", 3);
-		if (op[i] == 7)
-			write(1, "rr\n", 3);
-		if (op[i] == 8)
-			write(1, "rra\n", 4);
-		if (op[i] == 9)
-			write(1, "rrb\n", 4);
-		if (op[i] == 10)
-			write(1, "rrr\n", 4);
-		i++;
+		ft_printf("%s\n", g_move_msg[(int)op[i]]);
 	}
 }
 
@@ -173,5 +140,4 @@ void	sort_backtrack(t_stack *a, t_stack *b)
 	op.depth = 0;
 	backtrack(a, b, &op);
 	op_print(op.opti, op.max_depth);
-	return ;
 }

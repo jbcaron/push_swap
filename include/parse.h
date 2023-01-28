@@ -6,7 +6,7 @@
 /*   By:  <>                                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 18:17:48 by                   #+#    #+#             */
-/*   Updated: 2023/01/19 18:17:48 by                  ###   ########.fr       */
+/*   Updated: 2023/01/26 18:53:06 by jcaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,6 @@
 
 # include <stddef.h>
 
-int	*arg_to_tab(const size_t nb_arg, char **arg);
+int	*arg_to_tab(size_t nb_arg, char **arg);
 
 #endif

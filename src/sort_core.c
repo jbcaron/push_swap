@@ -6,7 +6,7 @@
 /*   By: jcaron <jcaron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 17:39:28 by jcaron            #+#    #+#             */
-/*   Updated: 2023/01/20 15:55:12 by jcaron           ###   ########.fr       */
+/*   Updated: 2023/01/28 16:23:03 by jcaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdio.h>
@@ -14,53 +14,11 @@
 #include <stddef.h>
 #include <stdbool.h>
 #include <limits.h>
+#include "sort_core.h"
 #include "stack.h"
 #include "move.h"
 #include "push_by_chunk.h"
-
-/**
-
-void	swap_if_order(t_stack *stack)
-{
-	if (stack->top < 2)
-		return ;
-	if (stack->tab[stack->top].val < stack->tab[stack->top - 1].val)
-		swap(stack);
-}
-
-void	swap_if_not_order(t_stack *stack)
-{
-	if (stack->top < 2)
-		return ;
-	if (stack->tab[stack->top].val > stack->tab[stack->top - 1].val)
-		swap(stack);
-}
-
-size_t	max(size_t x, size_t y)
-{
-	if (x > y)
-		return (x);
-	else
-		return (y);
-}
-
-size_t	get_max_rank(t_stack *stack)
-{
-	size_t	i;
-	size_t	max_rank;
-
-	i = 1;
-	max_rank = 0;
-	while (i <= stack->top)
-	{
-		if (stack->tab[i].chunk > max_rank)
-			max_rank = stack->tab[i].chunk;
-		i++;
-	}
-	return (max_rank);
-}
-
-**/
+#include "stack_is_order.h"
 
 static bool	push_if_a(t_stack *a, t_stack *b, unsigned int search)
 {
@@ -88,10 +46,8 @@ static void	put_top(t_stack *a, t_stack *b, unsigned int search)
 	if (rot_op <= rev_rot_op)
 	{
 		while (rot_op--)
-		{
 			if (push_if_a(a, b, search - 1) == false)
 				rb();
-		}
 	}
 	else
 	{
@@ -123,7 +79,9 @@ void	sort_core(t_stack *a, t_stack *b)
 {
 	unsigned int	max;
 
-	sort_chunk(a, b);
+	if (stack_is_order(a, b))
+		return ;
+	push_by_chunk(a, b);
 	max = get_max(b);
 	while (max)
 	{
