@@ -6,14 +6,14 @@
 /*   By: jcaron <jcaron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 16:16:29 by jcaron            #+#    #+#             */
-/*   Updated: 2023/01/19 19:01:09 by jcaron           ###   ########.fr       */
+/*   Updated: 2023/01/30 15:26:22 by jcaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MOOVE_H
-# define MOOVE_H
+#ifndef MOVE_H
+# define MOVE_H
 
-#include <stdbool.h>
+# include <stdbool.h>
 # include "stack.h"
 
 # define pa() f_pa(a, b)
