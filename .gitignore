@@ -1,4 +1,9 @@
 *.o
+*.a
 push_swap
 op.txt
 compile_flags.txt
+checker_linux
+push_swap_tester
+visualizer
+imgui.ini

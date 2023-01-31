@@ -6,7 +6,7 @@
 /*   By: jcaron <jcaron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 18:04:23 by jcaron            #+#    #+#             */
-/*   Updated: 2023/01/28 16:21:58 by jcaron           ###   ########.fr       */
+/*   Updated: 2023/01/31 17:22:21 by jcaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,10 @@ void	push_by_chunk(t_stack *a, t_stack *b)
 	while (a->top)
 	{
 		while (a->tab[a->top] > i + chunk_size)
-			ra();
-		pb();
+			ra(a);
+		pb(a, b);
 		if (b->tab[b->top] < i)
-			rb();
+			rb(b);
 		i++;
 	}
 }

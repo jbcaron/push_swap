@@ -6,7 +6,7 @@
 #    By: jcaron <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/26 14:57:57 by jcaron            #+#    #+#              #
-#    Updated: 2023/01/28 17:15:32 by jcaron           ###   ########.fr        #
+#    Updated: 2023/01/31 19:27:32 by jcaron           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,9 @@ SRC			=	./src/init_stack.c			\
 				./src/move/rot.c			\
 				./src/move/swap.c			\
 				./src/move/push.c			\
-				./src/move/move_all.c		\
+				./src/move/move_all_1.c		\
+				./src/move/move_all_2.c		\
+				./src/move/move_all_3.c		\
 				./src/stack_is_order.c		\
 				./src/error.c
 
@@ -36,9 +38,9 @@ OBJ 		=	$(SRC:%.c=%.o)
 # compilation
 
 CC			=	clang
-CFLAG		=	-Wall -Wextra -Werror -O2 -g3
+CFLAG		=	-Wall -Wextra -Werror -O2
 
-#dependencies library
+# dependencies library
 INC_LIB		=	./libft/
 LIBFLAG		=	-L./libft -lft
 
@@ -49,9 +51,7 @@ LIBFLAG		=	-L./libft -lft
 all: $(NAME)
 
 libft:
-	@git submodule update --remote
-	@(cd libft && make)
-	@echo "***compilation of library libft***"
+	@(cd ./libft && make)
 
 $(NAME): libft $(OBJ)
 	

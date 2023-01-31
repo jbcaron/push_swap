@@ -6,7 +6,7 @@
 /*   By: jcaron <jcaron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 13:49:43 by jcaron            #+#    #+#             */
-/*   Updated: 2023/01/26 19:50:02 by jcaron           ###   ########.fr       */
+/*   Updated: 2023/01/31 19:34:41 by jcaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,7 @@
 #include "backtracking.h"
 #include "sort_core.h"
 
-void	sort_core(t_stack *a, t_stack *b);
-
-/**
+#if 0
 
 static void	print_stack(const t_stack *stack)
 {
@@ -33,7 +31,7 @@ static void	print_stack(const t_stack *stack)
 	}
 }
 
-**/
+#endif
 
 int	main(int argc, char **argv)
 {

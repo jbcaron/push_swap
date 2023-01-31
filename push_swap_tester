@@ -13,6 +13,7 @@ echo "                                           |_|                            
 
 read -p "How many numbers to generate ? " SIZE
 read -p "How many tests ? " NB_TEST
+read -p "Do you want to show all tests ? [y/n] " YN_PRINT_ALL
 echo
 
 min_move=1000000
@@ -47,17 +48,26 @@ do
 	fi
 	
 	checker=$(	./checker_linux $ARG < op.txt)
-	echo -ne "\033[2K\r"
-	echo -n "Move : " $move "("$checker")"
+
+	if [ $YN_PRINT_ALL = "y" ]
+	then
+		echo "Moves : " $move "("$checker")"
+	else
+		echo -ne "\033[2K\r"
+		echo -n "Moves : " $move "("$checker")"
+	fi
 
 
 done
 
 average=$(echo "scale=2 ; 1.0 * $tot_move / $NB_TEST" | bc -l)
 
-echo -ne "\033[2K\r"
-echo "Minimum of move : " $min_move
-echo "Maximum of move : " $max_move
-echo "Average of move : " $average
+if [ $YN_PRINT_ALL = "n" ]
+then
+	echo -ne "\033[2K\r"
+fi
+echo "Minimum of moves : " $min_move
+echo "Maximum of moves : " $max_move
+echo "Average of moves : " $average
 
 rm ./op.txt

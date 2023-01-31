@@ -6,7 +6,7 @@
 /*   By: jcaron <jcaron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 17:39:28 by jcaron            #+#    #+#             */
-/*   Updated: 2023/01/28 16:23:03 by jcaron           ###   ########.fr       */
+/*   Updated: 2023/01/31 17:21:56 by jcaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdio.h>
@@ -24,7 +24,7 @@ static bool	push_if_a(t_stack *a, t_stack *b, unsigned int search)
 {
 	if (b->tab[b->top] == search)
 	{
-		pa();
+		pa(a, b);
 		return (true);
 	}
 	return (false);
@@ -47,14 +47,14 @@ static void	put_top(t_stack *a, t_stack *b, unsigned int search)
 	{
 		while (rot_op--)
 			if (push_if_a(a, b, search - 1) == false)
-				rb();
+				rb(b);
 	}
 	else
 	{
 		while (rev_rot_op--)
 		{
 			push_if_a(a, b, search - 1);
-			rrb();
+			rrb(b);
 		}
 	}
 }
@@ -86,10 +86,10 @@ void	sort_core(t_stack *a, t_stack *b)
 	while (max)
 	{
 		put_top(a, b, max);
-		pa();
+		pa(a, b);
 		if (a->top > 1 && a->tab[a->top] > a->tab[a->top - 1])
 		{
-			sa();
+			sa(a);
 			max--;
 		}
 		max--;

@@ -6,7 +6,7 @@
 /*   By: jcaron <jcaron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 16:57:24 by jcaron            #+#    #+#             */
-/*   Updated: 2023/01/26 19:02:18 by jcaron           ###   ########.fr       */
+/*   Updated: 2023/01/31 19:35:04 by jcaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,9 +70,6 @@ int	*arg_to_tab(size_t nb_arg, char **arg)
 		j--;
 	}
 	if (single_tab(tab, nb_arg) < 0)
-	{
-		ft_free(tab);
 		error(TWO_ARG);
-	}
 	return (tab);
 }

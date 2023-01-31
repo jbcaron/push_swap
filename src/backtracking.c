@@ -6,7 +6,7 @@
 /*   By: jcaron <jcaron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/06 18:37:39 by jcaron            #+#    #+#             */
-/*   Updated: 2023/01/28 17:15:06 by jcaron           ###   ########.fr       */
+/*   Updated: 2023/01/31 18:18:19 by jcaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@
 #include "libft.h"
 #include "stack_is_order.h"
 
-#define DEPTH 3
+#define DEPTH 2
 
-static const char	*g_move_msg[11] = {
+static const char	*g_move_msg[12] = {
 	"sa",
 	"sb",
 	"ss",
@@ -36,17 +36,17 @@ static const char	*g_move_msg[11] = {
 
 static bool	mv(t_stack *a, t_stack *b, char nb)
 {
-	if (nb == 1)
+	if (nb == 0)
 		return (swap(a));
-	if (nb == 2)
+	if (nb == 1)
 		return (swap(b));
-	if (nb == 3)
+	if (nb == 2)
 		return (dbl_swap(a, b));
-	if (nb == 4)
+	if (nb == 3)
 		return (push(b, a));
-	if (nb == 5)
+	if (nb == 4)
 		return (push(a, b));
-	if (nb == 6)
+	if (nb == 5)
 		return (rot(a));
 	if (nb == 6)
 		return (rot(b));
@@ -58,22 +58,22 @@ static bool	mv(t_stack *a, t_stack *b, char nb)
 		return (rev_rot(b));
 	if (nb == 10)
 		return (dbl_rev_rot(a, b));
-	return (-1);
+	return (false);
 }
 
 static bool	mv_rev(t_stack *a, t_stack *b, char nb)
 {
-	if (nb == 1)
+	if (nb == 0)
 		return (swap(a));
-	if (nb == 2)
+	if (nb == 1)
 		return (swap(b));
-	if (nb == 3)
+	if (nb == 2)
 		return (dbl_swap(a, b));
-	if (nb == 4)
+	if (nb == 3)
 		return (push(a, b));
-	if (nb == 5)
+	if (nb == 4)
 		return (push(b, a));
-	if (nb == 6)
+	if (nb == 5)
 		return (rev_rot(a));
 	if (nb == 6)
 		return (rev_rot(b));
@@ -85,7 +85,7 @@ static bool	mv_rev(t_stack *a, t_stack *b, char nb)
 		return (rot(b));
 	if (nb == 10)
 		return (dbl_rot(a, b));
-	return (-1);
+	return (false);
 }
 
 static void	backtrack(t_stack *a, t_stack *b, t_solution *op)
@@ -125,6 +125,7 @@ static void	op_print(char *op, size_t depth)
 	while (i < depth)
 	{
 		ft_printf("%s\n", g_move_msg[(int)op[i]]);
+		i++;
 	}
 }
 
